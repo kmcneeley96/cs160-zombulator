@@ -1,27 +1,59 @@
 // zombulator by Kayla McNeeley
 
-var zombieX = 50;
 var zombieY = 100;
+var zombieV = 0;
+var zombieA = 0.2;
+var zombieDamping = -0.5;
+var zombieSize = 80;
+var zombieColor;
+
+var humanY = 100;
+var humanV = 0;
+var humanA = 0.6;
+var humanDamping = -0.8;
+var humanSize = 80;
+var humanColor;
+
+var backgroundColor;
 
 function setup() {
-	createCanvas(800, 800);
+  createCanvas(windowWidth, windowHeight);
+  backgroundColor = color(114, 168, 255);
+  zombieColor = color(242, 255, 0);
+  humanColor = color(random(200, 255), random(200, 255), random(200, 255));
 }
 
 function draw() {
-	background(255, 255, 255);
-	fill(17, 4, 92);
-	strokeWeight(9);
-	stroke(247, 211, 9);
-	ellipse(zombieX, 50, 80, 80);
-	fill(158, 72, 6);
-	ellipse(zombieY, 100, 80, 80)
-	zombieX = zombieX + 1;
-	zombieY = zombieY + 3;
-	if (zombieX >= 800) {
-		zombieX= 0;
-	}
-	if (zombieY >= 300) {
-		zombieY= 0;
-	}
+  background(backgroundColor);
+  noStroke();
+
+  drawZombie();
+  moveZombie();
+  drawHuman();
+  moveHuman();
 }
+
+function drawZombie() {
+  fill(zombieColor);
+  ellipse(windowWidth / 2, zombieY, zombieSize, zombieSize);
+}
+
+function moveZombie() { zombieY += zombieV;
+  zombieV += zombieA;
+  if (zombieY + (zombieSize / 2) >= windowHeight) {
+    zombieY = windowHeight - (zombieSize / 2);
+    zombieV *= zombieDamping;
+  }}
+
+  function drawHuman() {fill(humanColor);
+  ellipse(windowWidth / 4, humanY, humanSize, humanSize);
+  fill(0);
+  text("human", windowWidth / 4, humanY);}
+
+  function moveHuman() { humanY += humanV;
+  humanV += humanA;
+  if (humanY + (humanSize / 2) >= windowHeight) {
+    humanY = windowHeight - (humanSize / 2);
+    humanV *= humanDamping;
+  }}
 
