@@ -43,12 +43,12 @@ function initializeZombie(index) {
 
 function drawZombies() {
   for (var i = 0; i < NUMBER_OF_ZOMBIES; ++i) {
-    drawZombie(i);
+    drawZombie(zombies[i]);
   }
 }
 
-function drawZombie(index) {
-  var zombie = zombies [index];
+function drawZombie(zombie) {
+  // var zombie = zombies [index];
   fill(zombie.color);
   ellipse(zombie.x, zombie.y, zombie.size, zombie.size);
 }
@@ -71,12 +71,17 @@ function initializeHuman(index) {
 
 function drawHumans() {
   for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
-    drawHuman(i);
+    drawHuman(humans[i]);
   }
 }
 
-function drawHuman(index) {
-  var human = humans[index];
+function drawHuman(human) {
+  // var human = humans[index];
   fill(human.color);
   ellipse(human.x, human.y, human.size, human.size);
+  moveHuman(human);
+}
+
+function moveHuman(human) {
+  human.y += -2;
 }
