@@ -1,6 +1,7 @@
 // Zombulator by Kayla McNeeley
 // CS 160 Exercise 14: Parameterized functions
 
+
 var backgroundColor;
 
 const MIN_SIZE = 5;
