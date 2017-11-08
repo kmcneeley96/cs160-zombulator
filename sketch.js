@@ -25,6 +25,19 @@ function draw() {
   drawPopulation();
   movePopulation();
   drawPopulationCounts();
+  handleCollisions();
+}
+
+function handleCollisions() {
+  for (var i = 0; i < POPULATION_SIZE; ++i) {
+    var attacker = population[i];
+    for (var j = i + 1; j < POPULATION_SIZE; ++j) {
+      var target = population[j];
+      if (attacker.isTouching(target)) {
+        print("FIGHT!");
+      }
+    }
+  }
 }
 
 function initializePopulation() {
@@ -82,6 +95,10 @@ function initializeZombie() {
     draw: function() {
       fill(this.color);
       ellipse(this.x, this.y, this.size, this.size);
+    },
+
+    isTouching: function (target) {
+
     }
   };
 }
@@ -108,6 +125,10 @@ function initializeHuman() {
     draw: function() {
         fill(this.color);
         ellipse(this.x, this.y, this.size, this.size);
+    },
+
+    isTouching: function (target) {
+
     }
   };
 }
