@@ -75,6 +75,7 @@ function movePopulation() {
 
 function initializeZombie() {
   return {
+    humanoidType: "zombie",
     x: random(0, windowWidth),
     y: random(0, 200),
     speed: random(0.25, 3),
@@ -98,13 +99,16 @@ function initializeZombie() {
     },
 
     isTouching: function (target) {
-
+      if (this.humanoidType == target.humanoidType) return false;
+      var distance = dist(this.x, this.y, target.x, target.y);
+      return distance <= (this.sixe/2 + target.size/2); 
     }
   };
 }
 
 function initializeHuman() {
   return {
+    humanoidType: "human",
     x: random(0, windowWidth),
     y: random(windowHeight - 200, windowHeight),
     speed: random(0.25, 3),
@@ -128,7 +132,9 @@ function initializeHuman() {
     },
 
     isTouching: function (target) {
-
+      if (this.humanoidType == target.humanoidType) return false;
+      var distance = dist(this.x, this.y, target.x, target.y);
+      return distance <= (this.sixe/2 + target.size/2); 
     }
   };
 }
