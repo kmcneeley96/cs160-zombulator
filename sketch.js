@@ -6,7 +6,7 @@ var backgroundColor;
 
 const MIN_SIZE = 5;
 const MAX_SIZE = 50;
-const POPULATION_SIZE = 500;
+const POPULATION_SIZE = 300;
 
 var population = [];
 
@@ -15,7 +15,7 @@ var humanCount = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  backgroundColor = color(245, 255, 245);
+  backgroundColor = color(255, 0, 0);
   initializePopulation();
 }
 
@@ -56,9 +56,10 @@ function initializePopulation() {
 function drawPopulationCounts() {
   stroke(0);
   textSize(72);
-  textAlign(CENTER);
-  text("Zombies: " + zombieCount, width / 2, 100);
-  text("Humans: " + humanCount, width / 2, height - 100);
+  textAlign(LEFT);
+  text("Dead: " + zombieCount, width / 2, 100);
+  textAlign(RIGHT);
+  text("Living: " + humanCount, width / 2, height - 100);
 }
 
 function drawPopulation() {
@@ -80,7 +81,7 @@ function initializeZombie() {
     y: random(0, 200),
     speed: random(0.25, 3),
     size: random(MIN_SIZE, MAX_SIZE),
-    color: color(random(100, 255), random(50, 150), random(50, 150), 150),
+    color: color(random(50, 60), random(50, 137), random(50, 137), 266),
     move: function() {
       var direction = random(0, 100);
       if (direction < 20) {
@@ -95,7 +96,7 @@ function initializeZombie() {
     },
     draw: function() {
       fill(this.color);
-      ellipse(this.x, this.y, this.size, this.size);
+      rect(this.x, this.y, this.size, this.size);
     },
 
     isTouching: function (target) {
@@ -113,7 +114,7 @@ function initializeHuman() {
     y: random(windowHeight - 200, windowHeight),
     speed: random(0.25, 3),
     size: random(MIN_SIZE, MAX_SIZE),
-    color: color(random(50, 150), random(50, 150), random(150, 255), 150),
+    color: color(random(50, 60), random(100, 165), random(100, 165), 266),
     move: function() {
         var direction = random(0, 100);
         if (direction < 20) {
